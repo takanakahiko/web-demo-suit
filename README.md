@@ -4,6 +4,11 @@
 
 http://iei.sozaiya.com/archives/12029905.html
 
+## demo
+
+モデルのダウンロードが重いので気をつけてね
+https://takanakahiko.me/web-demo-suit/
+
 ## usage
 
 ```
