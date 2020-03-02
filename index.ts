@@ -51,9 +51,9 @@ function detectPoseInRealTime(video: HTMLVideoElement, net: posenet.PoseNet, sui
 
     const {score, keypoints} = poses[0]
     if (score >= minPoseConfidence) {
-      drawKeypoints(keypoints, minPartConfidence, ctx);
-      drawSkeleton(keypoints, minPartConfidence, ctx);
-      drawBoundingBox(keypoints, ctx);
+      //drawKeypoints(keypoints, minPartConfidence, ctx);
+      //drawSkeleton(keypoints, minPartConfidence, ctx);
+      //drawBoundingBox(keypoints, ctx);
       drawSuit(keypoints, ctx, suit);
     }
 
