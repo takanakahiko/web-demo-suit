@@ -73,15 +73,15 @@ async function main() {
       multiplier: 1,
       quantBytes: 2,
     });
-    const loading = document.getElementById("loading");
-    loading.style.display = 'none';
+    const loading = document.getElementById("loading-overlay");
     const video = await setupCamera();
     const suit = await loadSuit()
+    loading.style.display = 'none';
     detectPoseInRealTime(video, net, suit);
   } catch (e) {
     alert(e);
     throw e;
-  }
+  } 
 }
 
 main();
