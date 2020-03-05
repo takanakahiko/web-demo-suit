@@ -1,10 +1,6 @@
 import * as posenet from '@tensorflow-models/posenet';
 import { drawKeypoints, drawSkeleton, drawBoundingBox, drawSuit, loadSuit } from './util'
 
-// import css
-import "./animations.css"
-import "./style.css"
-
 const videoWidth = 600;
 const videoHeight = 500;
 
