@@ -1,8 +1,11 @@
 import * as posenet from '@tensorflow-models/posenet';
 import { drawKeypoints, drawSkeleton, drawBoundingBox, drawSuit, loadSuit } from './util'
 
-const videoWidth = 600;
-const videoHeight = 500;
+const isMobile = innerWidth <= 480;
+const defaultMargin = 16;
+
+const videoWidth = isMobile ? innerWidth - defaultMargin : 600;
+const videoHeight = isMobile ? innerHeight / 1.5 : 500;
 
 async function setupCamera(): Promise<HTMLVideoElement> {
   const video = document.getElementById('video') as HTMLVideoElement;
@@ -35,13 +38,13 @@ function detectPoseInRealTime(video: HTMLVideoElement, net: posenet.PoseNet, sui
   async function poseDetectionFrame() {
     const minPoseConfidence = 0.15;
     const minPartConfidence = 0.1;
-    
+
     const poses = await net.estimatePoses(video, {
       flipHorizontal: true,
       decodingMethod: 'single-person'
     });
     console.log(poses)
-    
+
     ctx.clearRect(0, 0, videoWidth, videoHeight);
     ctx.save();
     ctx.scale(-1, 1);
