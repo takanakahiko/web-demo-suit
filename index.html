@@ -8,9 +8,11 @@
 </head>
 
 <body>
-  <p id="loading">
-    Loading PoseNet model...
-  </p>
+  <div id="loading-overlay">
+    <div id="loading-container">
+      <div id="loading"></div>
+    </div>
+  </div>
   <div id='main'>
     <video id="video" playsinline style="display:none"></video>
     <canvas id="output">
