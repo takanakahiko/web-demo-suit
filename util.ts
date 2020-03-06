@@ -81,7 +81,7 @@ export function drawSuit(keypoints: posenet.Keypoint[], ctx: CanvasRenderingCont
   const distance = Math.sqrt(Math.pow( leftShoulder.x - rightShoulder.x ,2) + Math.pow( leftShoulder.y - rightShoulder.y ,2));
   const angle  = Math.atan2( rightShoulder.y - leftShoulder.y, rightShoulder.x - leftShoulder.x ) ;
 
-  drawRotatedImage(suit, xMiddle + angle * 200, yMiddle - 130, angle, distance/400, ctx);
+  drawRotatedImage(suit, xMiddle + angle * 200, yMiddle + 1100, angle, distance/2000, ctx);
 }
 
 export async function loadSuit(): Promise<HTMLImageElement> {
