@@ -1,4 +1,5 @@
 import * as posenet from '@tensorflow-models/posenet';
+import KalmanFilter from 'kalmanjs';
 import { drawKeypoints, drawSkeleton, drawBoundingBox, drawSuit, loadSuit } from './util'
 
 const isMobile = innerWidth <= 480;
@@ -35,6 +36,11 @@ function detectPoseInRealTime(video: HTMLVideoElement, net: posenet.PoseNet, sui
   canvas.width = videoWidth;
   canvas.height = videoHeight;
 
+  const kfLeftX = new KalmanFilter();
+  const kfLeftY = new KalmanFilter();
+  const kfRightX = new KalmanFilter();  
+  const kfRightY = new KalmanFilter();
+
   async function poseDetectionFrame() {
     const minPoseConfidence = 0.15;
     const minPartConfidence = 0.1;
@@ -57,6 +63,10 @@ function detectPoseInRealTime(video: HTMLVideoElement, net: posenet.PoseNet, sui
       //drawKeypoints(keypoints, minPartConfidence, ctx);
       //drawSkeleton(keypoints, minPartConfidence, ctx);
       //drawBoundingBox(keypoints, ctx);
+      keypoints[5].position.x = kfLeftX.filter(keypoints[5].position.x)
+      keypoints[5].position.y = kfLeftY.filter(keypoints[5].position.y)
+      keypoints[6].position.x = kfRightX.filter(keypoints[6].position.x)
+      keypoints[6].position.y = kfRightY.filter(keypoints[6].position.y)
       drawSuit(keypoints, ctx, suit);
     }
 

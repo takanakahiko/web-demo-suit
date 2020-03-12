@@ -21,6 +21,7 @@
   "dependencies": {
     "@tensorflow-models/posenet": "^2.2.1",
     "@tensorflow/tfjs": "^1.5.2",
+    "kalmanjs": "^1.1.0",
     "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {
