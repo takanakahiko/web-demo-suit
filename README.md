@@ -1,5 +1,7 @@
 # web-demo-suit
 
+[![Actions Status](https://github.com/takanakahiko/web-demo-suit/workflows/deploy/badge.svg)](https://github.com/takanakahiko/web-demo-suit/actions)
+
 ※画像はパブリックドメインのものに差し替えました
 
 ## demo
