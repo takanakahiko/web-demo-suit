@@ -26,6 +26,6 @@ https://www.moguravr.com/web-demo-suit/
 
 ### ねとらぼ
 
-ネット上の旬な情報を国内外からジャンルを問わず幅広く紹介するメディア ねとらぼ さまに取り上げていただきました :tada:
+ITmedia さまが運営するIT系ニュースサイトである ねとらぼ さまに取り上げていただきました :tada:
 
 https://nlab.itmedia.co.jp/nl/articles/2003/13/news132.html
