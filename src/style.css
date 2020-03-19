@@ -31,3 +31,14 @@
   -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
   animation: load6 1.7s infinite ease, round 1.7s infinite ease;
 }
+
+#output {
+  padding: 0;
+  margin: auto;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
