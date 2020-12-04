@@ -2,10 +2,14 @@
   "name": "web-demo-suit",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/electron.js",
   "scripts": {
     "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html --public-url ."
+    "build": "parcel build src/index.html --public-url .",
+    "dev:electron": "npm run _compile-electron-ts && concurrently \"npm run dev\" \"wait-on http://localhost:1234 && electron . \"",
+    "build:electron": "npm run _clean && npm run _compile-electron-ts && npm run build && electron-builder -mw",
+    "_clean": "rm -rf .cache dist/ electron-dist/",
+    "_compile-electron-ts": "tsc --outDir dist src/electron.ts"
   },
   "repository": {
     "type": "git",
@@ -20,11 +24,40 @@
   "homepage": "https://github.com/takanakahiko/web-demo-suit#readme",
   "dependencies": {
     "@tensorflow-models/posenet": "^2.2.1",
-    "@tensorflow/tfjs": "^1.5.2",
+    "@tensorflow/tfjs": "^2.7.0",
+    "@tensorflow/tfjs-backend-wasm": "^2.7.0",
+    "electron-is-dev": "^1.2.0",
     "kalmanjs": "^1.1.0",
     "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {
-    "typescript": "^3.8.3"
+    "@types/node": "^14.14.10",
+    "concurrently": "^5.3.0",
+    "electron": "^11.0.3",
+    "electron-builder": "^22.9.1",
+    "typescript": "^3.9.3",
+    "wait-on": "^5.2.0"
+  },
+  "build": {
+    "appId": "me.takanakahiko.web-demo-suit",
+    "files": [
+      "src/electron.js",
+      "assets/**/*",
+      "dist/**/*"
+    ],
+    "directories": {
+      "buildResources": "dist",
+      "output": "electron-dist"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/logo.png",
+      "entitlements": "assets/entitlements.plist",
+      "entitlementsInherit": "assets/entitlements.plist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/logo.png"
+    }
   }
 }
