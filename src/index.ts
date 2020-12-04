@@ -1,3 +1,6 @@
+import * as tf from '@tensorflow/tfjs';
+import '@tensorflow/tfjs-backend-wasm';
+
 import * as posenet from '@tensorflow-models/posenet';
 import KalmanFilter from 'kalmanjs';
 import { drawKeypoints, drawSkeleton, drawBoundingBox, drawSuit, loadSuit } from './util'
@@ -13,9 +16,7 @@ async function setupCamera(): Promise<HTMLVideoElement> {
   video.width = videoWidth;
   video.height = videoHeight;
   const stream = await navigator.mediaDevices.getUserMedia({
-    'audio': false,
     'video': {
-      facingMode: 'user',
       width: videoWidth,
       height: videoHeight,
     },
@@ -79,6 +80,7 @@ function detectPoseInRealTime(video: HTMLVideoElement, net: posenet.PoseNet, sui
 
 async function main() {
   try {
+    await tf.setBackend("wasm");
     const net = await posenet.load({
       architecture: 'ResNet50',
       outputStride: 32,
