@@ -2,10 +2,14 @@
   "name": "web-demo-suit",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/electron.js",
   "scripts": {
     "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html --public-url ."
+    "build": "parcel build src/index.html --public-url .",
+    "dev:electron": "npm run _compile-electron-ts && concurrently \"npm run dev\" \"wait-on http://localhost:1234 && electron . \"",
+    "build:electron": "npm run _clean && npm run _compile-electron-ts && npm run build && electron-builder -mw",
+    "_clean": "rm -rf .cache dist/ electron-dist/",
+    "_compile-electron-ts": "tsc --outDir dist src/electron.ts"
   },
   "repository": {
     "type": "git",
@@ -33,5 +37,27 @@
     "electron-builder": "^22.9.1",
     "typescript": "^3.9.3",
     "wait-on": "^5.2.0"
+  },
+  "build": {
+    "appId": "me.takanakahiko.web-demo-suit",
+    "files": [
+      "src/electron.js",
+      "assets/**/*",
+      "dist/**/*"
+    ],
+    "directories": {
+      "buildResources": "dist",
+      "output": "electron-dist"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/logo.png",
+      "entitlements": "assets/entitlements.plist",
+      "entitlementsInherit": "assets/entitlements.plist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/logo.png"
+    }
   }
 }
