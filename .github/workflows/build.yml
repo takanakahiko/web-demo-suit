@@ -20,7 +20,7 @@ jobs:
           node-version: 10
 
       - name: BUild Web page
-        run: npm run _compile-electron-ts && npm run build
+        run: npm i && npm run _compile-electron-ts && npm run build
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
