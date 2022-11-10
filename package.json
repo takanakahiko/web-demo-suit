@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/node": "^14.14.10",
     "concurrently": "^5.3.0",
-    "electron": "^15.5.5",
+    "electron": "^18.3.7",
     "electron-builder": "^22.9.1",
     "typescript": "^3.9.3",
     "wait-on": "^5.2.0"
